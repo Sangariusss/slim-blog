@@ -2,7 +2,10 @@
 
 @section('header')
     <nav class="menu">
-        Future navigation
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/posts/create">Create Post</a>
     </nav>
 @endsection
 
@@ -12,8 +15,11 @@
     @if(count($posts) > 0)
         <ul>
             @foreach ($posts as $post)
-                <h2>{{ $post['title'] }}</h2>
-                <p>{{ $post["content"] }}</p>
+                <li>
+                    <h2><a href="/posts/{{ $post['id'] }}">{{ $post['title'] }}</a></h2>
+                    <p>{{ substr($post['content'], 0, 150) }}</p>
+                    <p>Posted on {{ $post['created_at'] }}</p>
+                </li>
             @endforeach
         </ul>
     @else
